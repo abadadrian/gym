@@ -25,6 +25,7 @@
                                 <option>Octubre</option>
                                 <option>Noviembre</option>
                                 <option>Diciembre</option>
+                                <!-- borrar luego -->
                             </select>
                         </div>
                         <div class="form-group">
