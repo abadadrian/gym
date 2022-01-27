@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sesion;
 use Illuminate\Http\Request;
 
-class MemberController extends Controller
+class SesionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        echo "Esto es el index.";
+        //
     }
 
     /**
@@ -23,7 +24,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        return view('member.create'); 
+        //
     }
 
     /**
@@ -40,33 +41,33 @@ class MemberController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Sesion  $sesion
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Sesion $sesion)
     {
-        echo "Enseñar datos de $id";
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Sesion  $sesion
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Sesion $sesion)
     {
-        return "Prueba";
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Sesion  $sesion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Sesion $sesion)
     {
         //
     }
@@ -74,10 +75,10 @@ class MemberController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Sesion  $sesion
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Sesion $sesion)
     {
         //
     }

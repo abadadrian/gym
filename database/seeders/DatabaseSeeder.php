@@ -13,6 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        //El orden IMPORTA, se ejecuta en orden. En este caso USER utiliza una clave ajena de Role, por lo tanto cuando USER se ejecute ROLE debe existir.
+        $this->call(RoleSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(ActivitySeeder::class);
     }
 }

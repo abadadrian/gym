@@ -1,7 +1,11 @@
 <?php
 
-use App\Http\Controllers\MemberController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +22,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('member', MemberController::class);
+Route::resource('users', UserController::class);
+Route::resource('activities', ActivityController::class);
+Route::resource('roles', RoleController::class);
+Route::resource('sesiones', SesionesController::class);
+
+
+
 // Route::get('member', [MemberController::class, 'index']);
 // Route::get('member/create', [MemberController::class, 'create']);
 // Route::get('member/{id}', [MemberController::class, 'show']);
@@ -26,3 +36,6 @@ Route::resource('member', MemberController::class);
 // Route::get('member/{id}/edit', [MemberController::class, 'edit']);
 // Route::put('member/{id}', [MemberController::class, 'update']);
 // Route::delete('member/{id}', [MemberController::class, 'destroy']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
