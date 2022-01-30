@@ -5,14 +5,25 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Añadir sesion') }}</div>
+                <div class="card-header">{{ __('Añadir sesiones') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="/sesiones">
                         @csrf
+                        <!-- ACTIVIDADES  -->
                         <div class="form-group">
-                            <label for="exampleFormControlSelect1">Example select</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
+                            <label for="mesSesion">Selecciona la actividad</label>
+                            <select class="form-control mb-4" id="exampleFormControlSelect1" >
+                                <option selected="selected">Actividades</option>
+                            @foreach ($activities as $activity)
+                                <option value="{{$activity->name}}">{{$activity->name}}</option>
+                            @endforeach
+                            </select>
+                        </div>
+                        <!-- MESES -->
+                        <div class="form-group">
+                            <label for="mesSesion">Selecciona el mes</label>
+                            <select class="form-control mb-4" id="exampleFormControlSelect1" >
                                 <option>Enero</option>
                                 <option>Febrero</option>
                                 <option>Marzo</option>
@@ -25,37 +36,39 @@
                                 <option>Octubre</option>
                                 <option>Noviembre</option>
                                 <option>Diciembre</option>
-                                <!-- borrar luego -->
                             </select>
                         </div>
+                        <!-- DIAS DE LA SEMANA -->
                         <div class="form-group">
+                        <label for="mesSesion">Selecciona los días</label>
+                            <br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                <label class="form-check-label" for="inlineCheckbox1">Lunes</label>
+                                <input class="form-check-input" type="checkbox" id="lunes" value="lunes">
+                                <label class="form-check-label" for="lunes">Lunes</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2">Martes</label>
+                                <input class="form-check-input" type="checkbox" id="martes" value="martes">
+                                <label class="form-check-label" for="martes">Martes</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2">Miércoles</label>
+                                <input class="form-check-input" type="checkbox" id="miercoles" value="miercoles">
+                                <label class="form-check-label" for="miercoles">Miércoles</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2">Jueves</label>
+                                <input class="form-check-input" type="checkbox" id="jueves" value="jueves">
+                                <label class="form-check-label" for="jueves">Jueves</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2">Viernes</label>
+                                <input class="form-check-input" type="checkbox" id="viernes" value="viernes">
+                                <label class="form-check-label" for="viernes">Viernes</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2">Sábado</label>
+                                <input class="form-check-input" type="checkbox" id="sabado" value="sabado">
+                                <label class="form-check-label" for="sabado">Sábado</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2">Domingo</label>
+                                <input class="form-check-input" type="checkbox" id="domingo" value="domingo">
+                                <label class="form-check-label" for="domingo">Domingo</label>
                             </div>
                         </div>
                     </form>

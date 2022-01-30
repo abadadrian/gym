@@ -43,7 +43,7 @@
                             <a class="nav-link active" aria-current="page" href="/activities">Actividades</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/sesiones">Sesiones</a>
+                            <a class="nav-link active" aria-current="page" href="/sesions">Sesiones</a>
                         </li>
                     </ul>
                     @endif
