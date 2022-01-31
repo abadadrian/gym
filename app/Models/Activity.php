@@ -11,4 +11,10 @@ class Activity extends Model
 
     protected $fillable = ['name', 'description', 'activity_minutes', 'max_participants'];
 
+    //el método users nos devolverá una colección de usuarios
+    public function sesions()
+    {
+        //el nombre es significativo
+        return $this->hasMany(Sesion::class);
+    }
 }

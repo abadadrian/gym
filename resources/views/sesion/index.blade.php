@@ -40,15 +40,19 @@
                         <div class="fht-cell"></div>
                     </th>
                     <th style="" data-field="name">
-                        <div class="th-inner ">Descripción</div>
+                        <div class="th-inner ">Mes</div>
                         <div class="fht-cell"></div>
                     </th>
                     <th style="" data-field="name">
-                        <div class="th-inner ">Duración minutos</div>
+                        <div class="th-inner ">Dias</div>
                         <div class="fht-cell"></div>
                     </th>
                     <th style="" data-field="name">
-                        <div class="th-inner ">Nº max participantes</div>
+                        <div class="th-inner ">Hora inicio</div>
+                        <div class="fht-cell"></div>
+                    </th>
+                    <th style="" data-field="name">
+                        <div class="th-inner ">Hora fin</div>
                         <div class="fht-cell"></div>
                     </th>
                     <th style="" data-field="name">
@@ -61,10 +65,11 @@
                 @forelse ($sesions as $sesion)
                 <tr data-index="1">
                     <td>{{$sesion->id}}</td>
-                    <td>{{$sesion->name}}</td>
-                    <td>{{$sesion->description}} </td>
-                    <td>{{$sesion->sesion_minutes}} </td>
-                    <td>{{$sesion->max_participants}} </td>
+                    <td>{{$sesion->activity->name}}</td>
+                    <td>{{$sesion->mesSesion}}</td>
+                    <td>{{$sesion->diasSesion}} </td>
+                    <td>{{$sesion->horaInicio}} </td>
+                    <td>{{$sesion->horaFinal}} </td>
                     <td>
                         <form method="POST" action="/sesions/{{$sesion->id}}">
                             @csrf

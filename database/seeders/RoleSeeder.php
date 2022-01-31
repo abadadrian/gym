@@ -30,8 +30,4 @@ class RoleSeeder extends Seeder
         ]);
         
     }
-
-    public function show(Role $role){
-        return view('role.show', ['role'=> $role]);
-    }
 }

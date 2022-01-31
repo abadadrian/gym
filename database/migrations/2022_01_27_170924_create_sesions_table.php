@@ -19,7 +19,6 @@ class CreateSesionsTable extends Migration
             $table->string('mesSesion');
             $table->dateTime('horaInicio');
             $table->dateTime('horaFinal');
-            $table->string('name')->unique();
             $table->timestamps();
         });
     }
@@ -32,12 +31,5 @@ class CreateSesionsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('sesions');
-
-        //las fk se mombran así: tabla_columna_foreign
-        //esto se usa para eliminar la clave en el down
-        Schema::table('sesions', function (Blueprint $table) {
-            $table->dropForeign('users_role_id_foreign');
-            $table->dropColumn('role_id');
-        });
     }
 }

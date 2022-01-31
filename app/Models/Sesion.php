@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Sesion extends Model
 {
     use HasFactory;
+
+    public function activity() { // el nombre es significativo
+        return $this->belongsTo(Activity::class);
+        } 
 }

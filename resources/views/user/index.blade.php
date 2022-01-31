@@ -70,7 +70,7 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($users ?? '' as $user)
+                @forelse ($users as $user)
                 <tr data-index="1">
                     <td>{{$user->id}}</td>
                     <td>{{$user->dni}}</td>
