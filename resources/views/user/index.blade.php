@@ -25,7 +25,9 @@
                 <li class="breadcrumb-item active" aria-current="page">Users</li>
             </ol>
         </nav>
-        <h1>Miembros del gimnasio</h1>
+        <h1>Miembros del gimnasio
+            <a href="/users/create" class="btn btn-dark">Nuevo</a>
+        </h1>
 
         <table id="table" class="table table-bordered table-hover">
             <thead>

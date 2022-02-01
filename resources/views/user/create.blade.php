@@ -1,56 +1,139 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.app')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Añadir usuario') }}</div>
 
-    <title>Laravel</title>
+                <div class="card-body">
+                    <form method="POST" action="/users">
+                        @csrf
 
-    <!-- Fonts -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+                        <div class="row mb-3">
 
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-        }
-    </style>
-</head>
-<h1 class="mt-4">Formulario de inscripción</h1>
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nombre y apellidos') }}</label>
 
-<body class="container">
-<form method="post" action='/store'>
-    @csrf
-    <div class="mb-3">
-        <label for="formGroupExampleInput" class="form-label">DNI</label>
-        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="12345678X">
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="text" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password" autofocus>
+
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="dni" class="col-md-4 col-form-label text-md-end">{{ __('DNI') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="dni" type="dni" class="form-control @error('dni') is-invalid @enderror" name="dni" value="{{ old('dni') }}" required autocomplete="dni">
+
+                                @error('dni')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="weight" class="col-md-4 col-form-label text-md-end">{{ __('Peso') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="weight" type="weight" class="form-control @error('weight') is-invalid @enderror" name="weight" value="{{ old('weight') }}" required autocomplete="weight">
+
+                                @error('weight')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="height" class="col-md-4 col-form-label text-md-end">{{ __('Altura') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="height" type="height" class="form-control @error('height') is-invalid @enderror" name="height" value="{{ old('height') }}" required autocomplete="height">
+
+                                @error('height')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="birthdate" class="col-md-4 col-form-label text-md-end">{{ __('Fecha de nacimiento') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="birthdate" type="date" class="form-control @error('birthdate') is-invalid @enderror" name="birthdate" value="{{ old('birthdate') }}" required autocomplete="birthdate" autofocus>
+
+                                @error('birthdate')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="gender" class="col-md-4 col-form-label text-md-end">{{ __('Sexo') }}</label>
+                            <div class="col-md-6">
+                                <select id="gender" type="date" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}" required autocomplete="gender" autofocus>>
+                                    <option selected value="1">Hombre</option>
+                                    <option value="2">Mujer</option>
+                                    <option value="3">Otro</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Añadir') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label">Nombre y apellidos</label>
-        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Arturo Herranz Pérez">
-    </div>
-    <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label">Peso</label>
-        <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="70" min="1">
-    </div>
-    <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label">Altura</label>
-        <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="160" min="1">
-    </div>
-    <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label">Fecha de nacimiento</label>
-        <input type="date" class="form-control" id="formGroupExampleInput2" placeholder="70" min="1">
-    </div>
-    <label for="formGroupExampleInput" class="form-label">Sexo</label>
-    <select class="form-select mb-4" aria-label="Default select example">
-        <option selected value="1">Hombre</option>
-        <option value="2">Mujer</option>
-        <option value="3">Otro</option>
-    </select>
-    <div class="col-12">
-    <button class="btn btn-primary" type="submit">Enviar</button>
-  </div>
-</form>
-</body>
-
-</html>
+</div>
+@endsection

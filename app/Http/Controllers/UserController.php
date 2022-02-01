@@ -72,7 +72,22 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $rules = [
+            'name' => 'required',
+            'dni' => 'required',
+            'weight' => 'required',
+            'height' => 'required',
+            'birthdate' => 'required',
+            'gender' => 'required',
+            'email' => 'required',
+        ];
+        $request->validate($rules);
+
+        //version corta
+        $user->fill($request->all());
+
+        $user->save();
+        return redirect('/users');
     }
 
     /**

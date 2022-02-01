@@ -29,30 +29,35 @@
         <h1 class="mt-3 mb-3">Editar actividad</h1>
 
         <table id="table" class="table table-bordered table-hover">
-
-            <form method="POST" action="/activities/{{$activity->id}}" class="form-floating" >
+            <form action="/activities/{{$activity->id}}" method="post">
                 @csrf
                 <input type="hidden" name="_method" value="PUT">
-                <label for="name">Nombre de actividad</label>
-                <input type="text" class="form-control mb-3" id="name" placeholder="{{$activity->name}}">
+                <div>
+                    <label for="name">Actividad</label>
+                    <input type="text" class="form-control mb-3" name="name" placeholder="{{ old('name') ?  old('name') : $activity->name }}">
+                </div>
 
-                <label for="description">Descripción</label>
-                <input type="text" class="form-control mb-3" id="description" placeholder="{{$activity->description}}">
+                <div>
+                    <label for="description">Descripción</label>
+                    <input type="text" class="form-control mb-3" name="description" placeholder="{{ old('description') ?? $activity->description }}">
+                </div>
 
-                <label for="activity_minutes">Duración minutos</label>
-                <input type="number" class="form-control mb-3" id="activity_minutes" placeholder="{{$activity->activity_minutes}}">
+                <div>
+                    <label for="activity_minutes">Duración minutos</label>
+                    <input type="number" class="form-control mb-3" name="activity_minutes" placeholder="{{$activity->activity_minutes}}">
+                </div>
+                
+                <div>
+                    <label for="max_participants">Nº max de participantes</label>
+                    <input type="number" class="form-control mb-3" name="max_participants" placeholder="{{$activity->max_participants}}">
+                </div>
 
-                <label for="max_participants">Nº max de participantes</label>
-                <input type="number" class="form-control mb-3" id="max_participants" placeholder="{{$activity->max_participants}}">
-
-                <button type="submit" class="btn btn-dark">{{ __("Editar")}}</button>
-
+                <div>
+                    <input class="btn btn-dark" type="submit" value="Actualizar">
+                </div>
             </form>
         </table>
     </div>
-
-
 </body>
-@endsection
-
 </html>
+@endsection

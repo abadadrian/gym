@@ -36,7 +36,7 @@
                         <div class="fht-cell"></div>
                     </th>
                     <th style="" data-field="name">
-                        <div class="th-inner ">Nombre actividad</div>
+                        <div class="th-inner ">Actividad</div>
                         <div class="fht-cell"></div>
                     </th>
                     <th style="" data-field="name">

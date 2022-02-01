@@ -72,22 +72,21 @@ class ActivityController extends Controller
      * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Activity $activity)
     {
-        // echo('entra al metodo update');
-        //version larga, comentada
-        // $study->code = $request->code;
-        // $study->name = $request->name;
-        // $study->abreviation = $request->abreviation;
+        $rules = [
+            'name' => 'required',
+            'description' => 'required',
+            'activity_minutes' => 'required',
+            'max_participants' => 'required',
+        ];
+        $request->validate($rules);
 
         //version corta
+        $activity->fill($request->all());
 
-        $activity = Activity::find($id);
-        echo($request->name);
-
-        // $activity->fill($request->all());
-        // $activity->save();
-        // return redirect('/activities');
+        $activity->save();
+        return redirect('/activities');
     }
 
     /**
