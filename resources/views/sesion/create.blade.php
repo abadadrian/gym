@@ -21,24 +21,18 @@
                                 </select>
                             </div>
                         </div>
-                        <!-- MESES -->
+                        <!-- FECHA -->
                         <div class="row mb-3">
-                            <label for="mesSesion" class="col-md-4 col-form-label text-md-end">{{ __('Mes') }}</label>
+                            <label for="mesSesion" class="col-md-4 col-form-label text-md-end">{{ __('Fecha sesion') }}</label>
+
                             <div class="col-md-6">
-                                <select class="form-select" id="exampleFormControlSelect1">
-                                    <option>Enero</option>
-                                    <option>Febrero</option>
-                                    <option>Marzo</option>
-                                    <option>Abril</option>
-                                    <option>Mayo</option>
-                                    <option>Junio</option>
-                                    <option>Julio</option>
-                                    <option>Agosto</option>
-                                    <option>Septiembre</option>
-                                    <option>Octubre</option>
-                                    <option>Noviembre</option>
-                                    <option>Diciembre</option>
-                                </select>
+                                <input id="mesSesion" type="date" class="form-control @error('mesSesion') is-invalid @enderror" name="mesSesion" value="{{ old('mesSesion') }}" required autocomplete="mesSesion" autofocus>
+
+                                @error('mesSesion')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
 

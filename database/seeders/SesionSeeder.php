@@ -18,7 +18,7 @@ class SesionSeeder extends Seeder
         Sesion::create([
             'id' => 1,
             'diasSesion' => 'Lunes',
-            'mesSesion' => 'Febrero',
+            'mesSesion' => '2009-02-15 10:00:00',
             'horaInicio' => '2009-02-15 10:00:00',
             'horaFinal' => '2009-02-15 11:00:00',
             'activity_id' => 1
@@ -27,7 +27,7 @@ class SesionSeeder extends Seeder
         Sesion::create([
             'id' => 2,
             'diasSesion' => 'Lunes',
-            'mesSesion' => 'Febrero',
+            'mesSesion' => '2009-02-15 09:00:00',
             'horaInicio' => '2009-02-15 09:00:00',
             'horaFinal' => '2009-02-15 12:00:00',
             'activity_id' => 2
@@ -36,7 +36,7 @@ class SesionSeeder extends Seeder
         Sesion::create([
             'id' => 3,
             'diasSesion' => 'Martes',
-            'mesSesion' => 'Febrero',
+            'mesSesion' => '2009-02-15 17:00:00',
             'horaInicio' => '2009-02-15 17:00:00',
             'horaFinal' => '2009-02-15 18:30:00',
             'activity_id' => 3
