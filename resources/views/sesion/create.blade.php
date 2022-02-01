@@ -8,15 +8,15 @@
                 <div class="card-header">{{ __('Añadir sesiones') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/sesiones">
+                    <form method="POST" action="/sesions">
                         @csrf
                         <!-- ACTIVIDADES  -->
                         <div class="row mb-3">
                             <label for="actividad" class="col-md-4 col-form-label text-md-end">{{ __('Actividad') }}</label>
                             <div class="col-md-6">
-                                <select class="form-select" id="exampleFormControlSelect1">
+                                <select name="activity" class="form-select">
                                     @foreach ($activities as $activity)
-                                    <option value="{{$activity->name}}">{{$activity->name}}</option>
+                                    <option value="{{$activity->id}}">{{$activity->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -41,31 +41,31 @@
                             <label for="dias" class="col-md-4 col-form-label text-md-end">{{ __('Días') }}</label>
                             <div class="col-md-6 mt-2">
                                 <div class="col-md-6">
-                                    <input class="form-check-input" type="checkbox" id="lunes" value="lunes">
+                                    <input class="form-check-input" type="checkbox" name="dias[]" id="lunes" value="1">
                                     <label class="form-check-label" for="lunes">Lunes</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-check-input" type="checkbox" id="martes" value="martes">
+                                    <input class="form-check-input" type="checkbox" name="dias[]" id="martes" value="2">
                                     <label class="form-check-label" for="martes">Martes</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-check-input" type="checkbox" id="miercoles" value="miercoles">
+                                    <input class="form-check-input" type="checkbox" name="dias[]" id="miercoles" value="3">
                                     <label class="form-check-label" for="miercoles">Miércoles</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-check-input" type="checkbox" id="jueves" value="jueves">
+                                    <input class="form-check-input" type="checkbox" name="dias[]" id="jueves" value="4">
                                     <label class="form-check-label" for="jueves">Jueves</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-check-input" type="checkbox" id="viernes" value="viernes">
+                                    <input class="form-check-input" type="checkbox" name="dias[]" id="viernes" value="5">
                                     <label class="form-check-label" for="viernes">Viernes</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-check-input" type="checkbox" id="sabado" value="sabado">
+                                    <input class="form-check-input" type="checkbox" name="dias[]" id="sabado" value="6">
                                     <label class="form-check-label" for="sabado">Sábado</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-check-input" type="checkbox" id="domingo" value="domingo">
+                                    <input class="form-check-input" type="checkbox" name="dias[]" id="domingo" value="7">
                                     <label class="form-check-label" for="domingo">Domingo</label>
                                 </div>
                             </div>

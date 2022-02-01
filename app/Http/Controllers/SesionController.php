@@ -40,7 +40,36 @@ class SesionController extends Controller
      */
     public function store(Request $request)
     {
-        $sesion = Sesion::create($request->all());
+        
+        //Creamos automaticamente las sesiones en base a lo introducido por el formulario
+        $fechaFormulario=\Carbon\Carbon::create($request->mesSesion);
+        // dd($fechaFormulario->dayOfWeekIso);
+        
+        $fechaSesion= Carbon::create($fechaFormulario->month);
+        //dd($fechaSesion);
+        $actividadFormulario=$request->activity;
+        
+        $actividad=Activity::find($actividadFormulario);
+        $horaInicioFormulario=\Carbon\Carbon::create($request->horaInicio);
+        $horaFinalFormulario=\Carbon\Carbon::create($request->horaFinal);
+
+        for($i =1; $i< $fechaSesion->daysInMonth+1; $i++){
+            $diasSemana[]=$request->diasSesion;
+
+            $horaInicio= Carbon::create($fechaFormulario->year, $fechaFormulario->month, $i, $horaInicioFormulario->hour, $horaInicioFormulario->minute);
+            $horaFinal= Carbon::create($fechaFormulario->year, $fechaFormulario->month, $i, $horaFinalFormulario->hour, $horaFinalFormulario->minute);
+            dd($horaInicio);
+            
+            if(in_array($horaInicio->dayOfWeekIso, $diasSemana)){
+                $sesion =new Sesion;
+                $sesion->mesSesion=$horaInicio->format('Y-m-d h:i');
+                $sesion->horaInicio=$horaInicio->format('Y-m-d h:i');
+                $sesion->horaFinal=$horaFinal->format('Y-m-d h:i');
+                $esion->activity_id=$actividad
+            }
+        }
+        
+        // $sesion = Sesion::create($request->all());
         return redirect('/sesions');
     }
 
@@ -137,4 +166,5 @@ class SesionController extends Controller
         // return $sesions;
 
     }
+    
 }
