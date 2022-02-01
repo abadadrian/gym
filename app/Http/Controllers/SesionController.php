@@ -53,19 +53,43 @@ class SesionController extends Controller
         $horaInicioFormulario=\Carbon\Carbon::create($request->horaInicio);
         $horaFinalFormulario=\Carbon\Carbon::create($request->horaFinal);
 
-        for($i =1; $i< $fechaSesion->daysInMonth+1; $i++){
-            $diasSemana[]=$request->diasSesion;
+        $diasSemana[]=$request->diasSesion;
+        //Si selecciono varios dias solo me selecciona el ultimo
 
+        //Dias de la semana en los que se imparte la actividad
+        foreach($diasSemana as $j){
+            if($j==1){
+                $dia[]="Lunes";
+            } else if($j==2){
+                $dia[]="Martes";
+            } else if($j==3){
+                $dia[]="Miércoles";
+            } else if($j==4){
+                $dia[]="Jueves";
+            } else if($j==5){
+                $dia[]="Viernes";
+            } else if($j==6){
+                $dia[]="Sábado";
+            } else if($j==7){
+                $dia[]="Domingo";
+            }
+        }
+
+        for($i =1; $i< $fechaSesion->daysInMonth+1; $i++){
+            
             $horaInicio= Carbon::create($fechaFormulario->year, $fechaFormulario->month, $i, $horaInicioFormulario->hour, $horaInicioFormulario->minute);
             $horaFinal= Carbon::create($fechaFormulario->year, $fechaFormulario->month, $i, $horaFinalFormulario->hour, $horaFinalFormulario->minute);
-            dd($horaInicio);
+            // dd($horaFinal);
             
             if(in_array($horaInicio->dayOfWeekIso, $diasSemana)){
                 $sesion =new Sesion;
-                $sesion->mesSesion=$horaInicio->format('Y-m-d h:i');
-                $sesion->horaInicio=$horaInicio->format('Y-m-d h:i');
-                $sesion->horaFinal=$horaFinal->format('Y-m-d h:i');
-                $esion->activity_id=$actividad
+                //Para sacar el mes de la sesion
+                $sesion->mesSesion=$horaInicio->format('Y-m-d H:i');
+                $sesion->diasSesion=implode(";",$dia);
+                $sesion->horaInicio=$horaInicio->format('Y-m-d H:i');
+                $sesion->horaFinal=$horaFinal->format('Y-m-d H:i');
+                $sesion->activity_id=$actividad->id;
+                $sesion->save();
             }
         }
         

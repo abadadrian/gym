@@ -39,10 +39,10 @@
                         <div class="th-inner ">Actividad</div>
                         <div class="fht-cell"></div>
                     </th>
-                    <th style="" data-field="name">
+                    <!--<th style="" data-field="name">
                         <div class="th-inner ">Mes</div>
                         <div class="fht-cell"></div>
-                    </th>
+                    </th>-->
                     <th style="" data-field="name">
                         <div class="th-inner ">Dias</div>
                         <div class="fht-cell"></div>
@@ -66,7 +66,7 @@
                 <tr data-index="1">
                     <td>{{$sesion->id}}</td>
                     <td>{{$sesion->activity->name}}</td>
-                    <td>{{$sesion->mesSesion}}</td>
+                    <!--<td>{{$sesion->mesSesion}}</td>-->
                     <td>{{$sesion->diasSesion}} </td>
                     <td>{{$sesion->horaInicio}} </td>
                     <td>{{$sesion->horaFinal}} </td>
