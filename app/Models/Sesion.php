@@ -9,7 +9,14 @@ class Sesion extends Model
 {
     use HasFactory;
 
-    public function activity() { // el nombre es significativo
+    public function activity()
+    { // el nombre es significativo
         return $this->belongsTo(Activity::class);
-        } 
+    }
+
+    //Relacion N:N - Entre Usuarios y Sesions
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

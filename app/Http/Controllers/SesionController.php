@@ -46,7 +46,7 @@ class SesionController extends Controller
         // dd($fechaFormulario->dayOfWeekIso);
         
         $fechaSesion= Carbon::create($fechaFormulario->month);
-        //dd($fechaSesion);
+        // dd($fechaSesion);
         $actividadFormulario=$request->activity;
         
         $actividad=Activity::find($actividadFormulario);
