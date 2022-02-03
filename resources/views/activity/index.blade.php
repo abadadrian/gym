@@ -68,10 +68,10 @@
                     <td>
                         <form method="POST" action="/activities/{{$activity->id}}">
                             @csrf
-                            <a href="/activities/{{$activity->id}}" class="btn btn-dark">Ver</a>
-                            <a href="/activities/{{$activity->id}}/edit" class="btn btn-dark">Editar</a>
+                            <a href="/activities/{{$activity->id}}" class="btn btn-dark"><i class="far fa-eye"></i></a>
+                            <a href="/activities/{{$activity->id}}/edit" class="btn btn-dark"><i class="far fa-edit"></i></a>
                             <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="btn btn-dark">{{ __("Eliminar")}}
+                            <button type="submit" class="btn btn-dark"><i class="far fa-trash-alt"></i>
                             </button>
                         </form>
                     </td>

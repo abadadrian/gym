@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Sesion;
 
 class UserController extends Controller
 {
@@ -14,9 +15,18 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $this->addSesion();
+        // $users = User::all();
+        // return view('user.index' , ['users' => $users]);
+    }
 
-        return view('user.index' , ['users' => $users]);
+    public function addSesion()
+    {
+        $user = User::find(1);
+        $sesion = Sesion::find(2);
+        $user->addSesion($sesion);
+        $users = User::all();
+        return view('user.index', ['users' => $users]);
     }
 
     /**
@@ -89,6 +99,7 @@ class UserController extends Controller
         $user->save();
         return redirect('/users');
     }
+
 
     /**
      * Remove the specified resource from storage.

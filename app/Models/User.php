@@ -54,8 +54,12 @@ class User extends Authenticatable
     }
 
     //Relacion N:N - Usuarios y Sesiones
-    public function roles()
+    public function sesions()
     {
         return $this->belongsToMany(Sesion::class);
+    }
+
+    public function addSesion(Sesion $sesion){
+        $this->sesions()->attach($sesion);
     }
 }

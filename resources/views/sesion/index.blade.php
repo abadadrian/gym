@@ -73,11 +73,9 @@
                     <td>
                         <form method="POST" action="/sesions/{{$sesion->id}}">
                             @csrf
-                            <a href="/sesions/{{$sesion->id}}" class="btn btn-dark">Ver</a>
-                            <a href="/sesions/{{$sesion->id}}/edit" class="btn btn-dark">Editar</a>
+                            <a href="/sesions/{{$sesion->id}}" class="btn btn-dark"><i class="far fa-eye"></i></a>
                             <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="btn btn-dark">{{ __("Eliminar")}}
-                            </button>
+                            <button type="submit" class="btn btn-dark"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </td>
                 </tr>

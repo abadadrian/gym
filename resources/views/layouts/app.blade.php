@@ -45,6 +45,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/sesions">Sesiones</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{route('sign')}}">Reservas</a>
+                        </li>
                     </ul>
                     @endif
                     <!-- Left Side Of Navbar -->

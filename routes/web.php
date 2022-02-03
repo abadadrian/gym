@@ -26,9 +26,10 @@ Route::get('/', function () {
 Route::resource('users', UserController::class);
 Route::resource('activities', ActivityController::class);
 Route::resource('roles', RoleController::class);
-Route::resource('sesions', SesionController::class);
-
-
+Route::prefix('sesions')->group(function () {
+    Route::resource('/', SesionController::class);
+    Route::get('/sign', [SesionController::class, 'sign'])->name('sign');
+});
 
 // Route::get('member', [MemberController::class, 'index']);
 // Route::get('member/create', [MemberController::class, 'create']);
