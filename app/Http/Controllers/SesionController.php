@@ -20,10 +20,6 @@ class SesionController extends Controller
 
         return view('sesion.index', ['sesions' => $sesions]);
     }
-
-    public function sign(){
-        return view('sesion.sign');
-    }
     /**
      * Show the form for creating a new resource.
      *

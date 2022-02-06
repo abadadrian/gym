@@ -26,7 +26,7 @@
             </ol>
         </nav>
         <h1 class="mt-3 mb-3">Sesiones de actividades
-            <a href="/sesions/create" class="btn btn-dark">Nuevo</a>
+            <a href="/sesions/create" class="btn btn-primary"><i class="fas fa-plus"></i></a>
         </h1>
         <table id="table" class="table table-bordered table-hover">
             <thead>

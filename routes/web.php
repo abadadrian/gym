@@ -4,6 +4,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SesionController;
+use App\Http\Controllers\DateController;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,9 +28,12 @@ Route::get('/', function () {
 Route::resource('users', UserController::class);
 Route::resource('activities', ActivityController::class);
 Route::resource('roles', RoleController::class);
+Route::resource('dates', DateController::class);
+
+//Grupo de rutas para combinar varias
 Route::prefix('sesions')->group(function () {
     Route::resource('/', SesionController::class);
-    Route::get('/sign', [SesionController::class, 'sign'])->name('sign');
+    // Route::get('/sign', [SesionController::class, 'sign'])->name('sign');
 });
 
 // Route::get('member', [MemberController::class, 'index']);

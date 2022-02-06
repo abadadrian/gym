@@ -26,7 +26,7 @@
             </ol>
         </nav>
         <h1>Miembros del gimnasio
-            <a href="/users/create" class="btn btn-dark">Nuevo</a>
+            <a href="/users/create" class="btn btn-primary"><i class="fas fa-plus"></i></a>
         </h1>
 
         <table id="table" class="table table-bordered table-hover">

@@ -46,7 +46,7 @@
                             <a class="nav-link active" aria-current="page" href="/sesions">Sesiones</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{route('sign')}}">Reservas</a>
+                            <a class="nav-link active" aria-current="page" href="/dates">Reservas</a>
                         </li>
                     </ul>
                     @endif

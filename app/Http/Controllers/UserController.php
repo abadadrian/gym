@@ -15,19 +15,22 @@ class UserController extends Controller
      */
     public function index()
     {
-        $this->addSesion();
-        // $users = User::all();
-        // return view('user.index' , ['users' => $users]);
-    }
-
-    public function addSesion()
-    {
         $user = User::find(1);
         $sesion = Sesion::find(2);
         $user->addSesion($sesion);
         $users = User::all();
         return view('user.index', ['users' => $users]);
     }
+    /** 
+     *  public function addSesion()
+     * {
+     *    $user = User::find(1);
+     *   $sesion = Sesion::find(2);
+     *  $user->addSesion($sesion);
+     * $users = User::all();
+     *return view('user.index', ['users' => $users]);
+     *}
+     */
 
     /**
      * Show the form for creating a new resource.
@@ -36,7 +39,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create'); 
+        return view('user.create');
     }
 
     /**
