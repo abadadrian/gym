@@ -114,4 +114,12 @@ class UserController extends Controller
     {
         //
     }
+
+    public function filter (Request $request) {
+        $filter = $request->filter;
+        $users = User::where('name', 'LIKE', "%$filter%")->get();
+        return $users; //devuelve JSON
+        //otra opción, devolver código html
+        return view('study.ajax.filter', ['users'=>$users]);
+        }
 }

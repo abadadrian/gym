@@ -36,6 +36,8 @@ Route::prefix('sesions')->group(function () {
     // Route::get('/sign', [SesionController::class, 'sign'])->name('sign');
 });
 
+Route::get('/users/filter', [UserController::class, 'filter']);
+
 // Route::get('member', [MemberController::class, 'index']);
 // Route::get('member/create', [MemberController::class, 'create']);
 // Route::get('member/{id}', [MemberController::class, 'show']);

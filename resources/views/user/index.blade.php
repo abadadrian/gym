@@ -28,7 +28,14 @@
         <h1>Miembros del gimnasio
             <a href="/users/create" class="btn btn-primary"><i class="fas fa-plus"></i></a>
         </h1>
-
+        <h2>Busqueda ajax</h2>
+        <form action=“” id=“formulario”>
+            <input type=“text” id=“filtro”>
+            <input type="button" value="Buscar">
+        </form>
+        <div id=“destinoFiltro”>
+        </div>
+        <script src=“/js/ejempploajax.js”></script>
         <table id="table" class="table table-bordered table-hover">
             <thead>
                 <tr>
