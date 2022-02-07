@@ -22,7 +22,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Activities</li>
+                <li class="breadcrumb-item active" aria-current="page">Actividades</li>
             </ol>
         </nav>
         <h1 class="mt-3 mb-3">Actividades del gimnasio
@@ -68,10 +68,10 @@
                     <td>
                         <form method="POST" action="/activities/{{$activity->id}}">
                             @csrf
-                            <a href="/activities/{{$activity->id}}" class="btn btn-dark"><i class="far fa-eye"></i></a>
-                            <a href="/activities/{{$activity->id}}/edit" class="btn btn-dark"><i class="far fa-edit"></i></a>
+                            <a href="/activities/{{$activity->id}}" class="btn btn-primary"><i class="far fa-eye"></i></a>
+                            <a href="/activities/{{$activity->id}}/edit" class="btn btn-primary"><i class="far fa-edit"></i></a>
                             <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="btn btn-dark"><i class="far fa-trash-alt"></i>
+                            <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i>
                             </button>
                         </form>
                     </td>

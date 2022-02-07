@@ -26,7 +26,7 @@
             <li class="breadcrumb-item active" aria-current="page">Show</li>
         </ol>
     </nav>
-    <h1 class="mt-3 mb-3">{{$sesion->activity->name}}</h1>
+    <h1 class="mt-3 mb-3">Información de {{$sesion->activity->name}}</h1>
 
     <table id="table" class="table table-bordered table-hover">
         <thead>

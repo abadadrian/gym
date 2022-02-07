@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Date;
 use Illuminate\Http\Request;
 use App\Models\Activity;
+use App\Models\User;
+
 
 class DateController extends Controller
 {
@@ -15,8 +17,9 @@ class DateController extends Controller
      */
     public function index()
     {
+            $user= auth()->user();
             $activities = Activity::all();
-            return view('date.index', ['activities' => $activities]);
+            return view('date.index', ['activities' => $activities, 'user' => $user]);
     }
 
     /**

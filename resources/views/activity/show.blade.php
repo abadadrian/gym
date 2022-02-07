@@ -22,11 +22,11 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="/activities">Activities</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Show</li>
+                <li class="breadcrumb-item"><a href="/activities">Actividades</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Ver</li>
             </ol>
         </nav>
-        <h1 class="mt-3 mb-3">{{$activity->name}}</h1>
+        <h1 class="mt-3 mb-3">Información de {{$activity->name}}</h1>
 
         <table id="table" class="table table-bordered table-hover">
             <thead>

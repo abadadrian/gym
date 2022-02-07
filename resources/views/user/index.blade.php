@@ -22,7 +22,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Users</li>
+                <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
             </ol>
         </nav>
         <h1>Miembros del gimnasio
@@ -85,10 +85,10 @@
                     <td>
                         <form method="POST" action="/users/{{$user->id}}">
                             @csrf
-                            <a href="/users/{{$user->id}}" class="btn btn-dark"><i class="far fa-eye"></i></a>
-                            <a href="/users/{{$user->id}}/edit" class="btn btn-dark"><i class="far fa-edit"></i></a>
+                            <a href="/users/{{$user->id}}" class="btn btn-primary"><i class="far fa-eye"></i></a>
+                            <a href="/users/{{$user->id}}/edit" class="btn btn-primary"><i class="far fa-edit"></i></a>
                             <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="btn btn-dark"><i class="far fa-trash-alt"></i>
+                            <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i>
                             </button>
                         </form>
                     </td>
