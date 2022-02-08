@@ -114,7 +114,7 @@
                         <div class="row mb-3">
                             <label for="gender" class="col-md-4 col-form-label text-md-end">{{ __('Sexo') }}</label>
                             <div class="col-md-6">
-                                <select id="gender" type="date" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}" required autocomplete="gender" autofocus>>
+                                <select id="gender" type="date" class="form-select @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}" required autocomplete="gender" autofocus>>
                                     <option selected value="1">Hombre</option>
                                     <option value="2">Mujer</option>
                                     <option value="3">Otro</option>

@@ -39,10 +39,6 @@
                         <div class="th-inner ">Actividad</div>
                         <div class="fht-cell"></div>
                     </th>
-                    <!--<th style="" data-field="name">
-                        <div class="th-inner ">Mes</div>
-                        <div class="fht-cell"></div>
-                    </th>-->
                     <th style="" data-field="name">
                         <div class="th-inner ">Dias</div>
                         <div class="fht-cell"></div>

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Sesion;
+use Auth;
 
 class UserController extends Controller
 {
@@ -25,6 +25,7 @@ class UserController extends Controller
 
         if($name){
             $users = User::where('name', 'like', "%$name%")->paginate(5);
+
         }
         if($role){
             $users = User::where('role_id', $role)->paginate(5);

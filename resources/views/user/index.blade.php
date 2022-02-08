@@ -8,7 +8,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="js/ajax.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#buscar').click(function(e) {
+                e.preventDefault();
+                console.log("ha hecho click");
+                data = $('#filtro').val();
+                console.log(data);
+
+                $.get("/users/filter?filter=" + data, function(data, status) {
+                    // console.log("Data: " + data + "\nStatus: " + status);
+                    console.log(data);
+                    $('#destinofiltro').html(data);
+                });
+            });
+        });
+    </script>
     <title>Usuarios del gimnasio</title>
     <style>
         body {
@@ -29,10 +44,15 @@
             <h1>Miembros del gimnasio
                 <a href="/users/create" class="btn btn-primary"><i class="fas fa-plus"></i></a>
             </h1>
-            <form action=“” id=“formulario”>
-                <input type=“text” id=“filtro” placeholder="Nombre">
-                <input type="button" value="Buscar" id="buscar">
+            <form action="" id="formulario">
+                <input type="text" id="filtro">
+                <button type="submit" class="btn btn-primary" value="Buscar" id="buscar">
+                    <i class="fas fa-search"></i>
+                </button>
+
             </form>
+            <table id="destinofiltro" class="table table-bordered table-hover">
+            </table>
         </div>
 
         <table id="table" class="table table-bordered table-hover">
