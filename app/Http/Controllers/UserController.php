@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Sesion;
@@ -13,13 +14,29 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = User::find(1);
-        $sesion = Sesion::find(2);
-        $user->addSesion($sesion);
-        $users = User::all();
-        return view('user.index', ['users' => $users]);
+        $user = Auth::user();
+        $users = User::paginate(5);
+        // $user = User::find(1);
+        // $sesion = Sesion::find(2);
+        $name = $request->name;
+        $role = $request->role;
+
+        if($name){
+            $users = User::where('name', 'like', "%$name%")->paginate(5);
+        }
+        if($role){
+            $users = User::where('role_id', $role)->paginate(5);
+        }
+        
+        $users->withPath("/users?name=$name&role=$role");
+        return view('user.index', [
+            'users' => $users,
+            'name' => $name,
+            'role' => $role,
+            'user' => $user
+        ]);
     }
     /** 
      *  public function addSesion()
@@ -120,6 +137,6 @@ class UserController extends Controller
         $users = User::where('name', 'LIKE', "%$filter%")->get();
         return $users; //devuelve JSON
         //otra opción, devolver código html
-        return view('study.ajax.filter', ['users'=>$users]);
+        return view('user.ajax.filter', ['users'=>$users]);
         }
 }

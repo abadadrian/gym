@@ -7,9 +7,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="js/ajax.js"></script>
+    <title>Usuarios del gimnasio</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -25,17 +25,16 @@
                 <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
             </ol>
         </nav>
-        <h1>Miembros del gimnasio
-            <a href="/users/create" class="btn btn-primary"><i class="fas fa-plus"></i></a>
-        </h1>
-        <h2>Busqueda ajax</h2>
-        <form action=“” id=“formulario”>
-            <input type=“text” id=“filtro”>
-            <input type="button" value="Buscar">
-        </form>
-        <div id=“destinoFiltro”>
+        <div class="inline">
+            <h1>Miembros del gimnasio
+                <a href="/users/create" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+            </h1>
+            <form action=“” id=“formulario”>
+                <input type=“text” id=“filtro” placeholder="Nombre">
+                <input type="button" value="Buscar" id="buscar">
+            </form>
         </div>
-        <script src=“/js/ejempploajax.js”></script>
+
         <table id="table" class="table table-bordered table-hover">
             <thead>
                 <tr>
@@ -107,6 +106,8 @@
                 @endforelse
             </tbody>
         </table>
+        {{$users->links("pagination::bootstrap-4")}}
+
     </div>
 
 </body>
