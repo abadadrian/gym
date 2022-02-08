@@ -46,7 +46,7 @@
                             <a class="nav-link active" aria-current="page" href="/sesions">Sesiones</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/dates">Reservas</a>
+                            <a class="nav-link active" aria-current="page" href="/dates">Reservar</a>
                         </li>
                     </ul>
                     @endif
@@ -75,10 +75,17 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/dates/user" onclick="event.preventDefault();
+                                                     document.getElementById('dates-form').submit();">
+                                    {{ __('Mis reservas') }}
+                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Cerrar sesión') }}
                                 </a>
+                                <form id="dates-form" action="/dates/user" method="POST" class="d-none">
+                                    @csrf
+                                </form>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf

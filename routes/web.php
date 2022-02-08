@@ -30,8 +30,13 @@ Route::resource('users', UserController::class);
 Route::resource('sesions', SesionController::class);
 Route::resource('activities', ActivityController::class);
 Route::resource('roles', RoleController::class);
-Route::get('/dates/filter', [DateController::class, 'filter']);
+
+Route::controller(DateController::class)->group(function (){
+    Route::get('/dates/filter/{id}','filter');
+    Route::post('/dates/user', 'datesUser');
+});
 Route::resource('dates', DateController::class);
+
 
 //Grupo de rutas para combinar varias
 // Route::prefix('sesions')->group(function () {

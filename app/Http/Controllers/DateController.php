@@ -89,12 +89,15 @@ class DateController extends Controller
         //
     }
 
-    public function filter (Request $request) {
-        $filter = $request->filter;
-        $sesions = Sesion::where('activity_id', 'LIKE', "%$filter%")->get();
-        dd($filter);
+    public function filter ($id) {
+        $sesions = Sesion::where('activity_id', 'LIKE', "%$id%")->get();
         return $sesions; //devuelve JSON
         //otra opción, devolver código html
-        return view('study.ajax.filter', ['sesions'=>$sesions]);
+        // return view('study.ajax.filter', ['sesions'=>$sesions]);
         }
+
+    public function datesUser(){
+        $user= auth()->user();
+        dd($user);
+    }
 }
