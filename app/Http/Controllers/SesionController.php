@@ -17,7 +17,6 @@ class SesionController extends Controller
     public function index()
     {
         $sesions = Sesion::all();
-
         return view('sesion.index', ['sesions' => $sesions]);
     }
     /**
@@ -39,59 +38,59 @@ class SesionController extends Controller
      */
     public function store(Request $request)
     {
-        
-        //Creamos automaticamente las sesiones en base a lo introducido por el formulario
-        $fechaFormulario=\Carbon\Carbon::create($request->mesSesion);
-        // dd($fechaFormulario->dayOfWeekIso);
-        
-        $fechaSesion= Carbon::create($fechaFormulario->month);
-        // dd($fechaSesion);
-        $actividadFormulario=$request->activity;
-        
-        $actividad=Activity::find($actividadFormulario);
-        $horaInicioFormulario=\Carbon\Carbon::create($request->horaInicio);
-        $horaFinalFormulario=\Carbon\Carbon::create($request->horaFinal);
 
-        $diasSemana[]=$request->diasSesion;
+        //Creamos automaticamente las sesiones en base a lo introducido por el formulario
+        $fechaFormulario = Carbon::create($request->mesSesion);
+        // dd($fechaFormulario->dayOfWeekIso);
+
+        $fechaSesion = Carbon::create($fechaFormulario->month);
+        // dd($fechaSesion);
+        $actividadFormulario = $request->activity;
+
+        $actividad = Activity::find($actividadFormulario);
+        $horaInicioFormulario = Carbon::create($request->horaInicio);
+        $horaFinalFormulario = Carbon::create($request->horaFinal);
+
+        $diasSesion = $request->diasSesion;
+
         //Si selecciono varios dias solo me selecciona el ultimo
 
         //Dias de la semana en los que se imparte la actividad
-        foreach($diasSemana as $j){
-            if($j==1){
-                $dia[]="Lunes";
-            } else if($j==2){
-                $dia[]="Martes";
-            } else if($j==3){
-                $dia[]="Miércoles";
-            } else if($j==4){
-                $dia[]="Jueves";
-            } else if($j==5){
-                $dia[]="Viernes";
-            } else if($j==6){
-                $dia[]="Sábado";
-            } else if($j==7){
-                $dia[]="Domingo";
-            }
-        }
 
-        for($i =1; $i< $fechaSesion->daysInMonth+1; $i++){
-            
-            $horaInicio= Carbon::create($fechaFormulario->year, $fechaFormulario->month, $i, $horaInicioFormulario->hour, $horaInicioFormulario->minute);
-            $horaFinal= Carbon::create($fechaFormulario->year, $fechaFormulario->month, $i, $horaFinalFormulario->hour, $horaFinalFormulario->minute);
+
+        $arrDias = [
+            '1' => 'Lunes',
+            '2' => 'Martes',
+            '3' => 'Miércoles',
+            '4' => 'Jueves',
+            '5' => 'Viernes',
+            '6' => 'Sábado',
+            '7' => 'Domingo',
+        ];
+
+
+        for ($i = 1; $i < $fechaSesion->daysInMonth; $i++) {
+
+            $horaInicio = Carbon::create($fechaFormulario->year, $fechaFormulario->month, $i, $horaInicioFormulario->hour, $horaInicioFormulario->minute);
+            $horaFinal = Carbon::create($fechaFormulario->year, $fechaFormulario->month, $i, $horaFinalFormulario->hour, $horaFinalFormulario->minute);
             // dd($horaFinal);
-            
-            if(in_array($horaInicio->dayOfWeekIso, $diasSemana)){
-                $sesion =new Sesion;
+
+            if (in_array($horaInicio->dayOfWeekIso, $diasSesion)) {
+                $sesion = new Sesion;
                 //Para sacar el mes de la sesion
-                $sesion->mesSesion=$horaInicio->format('Y-m-d H:i');
-                $sesion->diasSesion=implode(";",$dia);
-                $sesion->horaInicio=$horaInicio->format('Y-m-d H:i');
-                $sesion->horaFinal=$horaFinal->format('Y-m-d H:i');
-                $sesion->activity_id=$actividad->id;
+                $sesion->mesSesion = $horaInicio->format('Y-m-d H:i');
+                foreach ($arrDias as $diaSemana => $nombreDia) {
+                    if ($diaSemana == $horaInicio->dayOfWeekIso) {
+                        $sesion->diasSesion = $nombreDia;
+                    }
+                }
+                // $sesion->diasSesion = implode(";", $dia);
+                $sesion->horaInicio = $horaInicio->format('Y-m-d H:i');
+                $sesion->horaFinal = $horaFinal->format('Y-m-d H:i');
+                $sesion->activity_id = $actividad->id;
                 $sesion->save();
             }
         }
-        
         // $sesion = Sesion::create($request->all());
         return redirect('/sesions');
     }
@@ -139,6 +138,7 @@ class SesionController extends Controller
      */
     public function destroy(Sesion $sesion)
     {
+        dd($sesion);
         $sesion->delete();
         return redirect('/sesions');
     }
@@ -189,5 +189,4 @@ class SesionController extends Controller
         // return $sesions;
 
     }
-    
 }

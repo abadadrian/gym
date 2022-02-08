@@ -6,6 +6,7 @@ use App\Models\Date;
 use Illuminate\Http\Request;
 use App\Models\Activity;
 use App\Models\User;
+use App\Models\Sesion;
 
 
 class DateController extends Controller
@@ -87,4 +88,13 @@ class DateController extends Controller
     {
         //
     }
+
+    public function filter (Request $request) {
+        $filter = $request->filter;
+        $sesions = Sesion::where('activity_id', 'LIKE', "%$filter%")->get();
+        dd($filter);
+        return $sesions; //devuelve JSON
+        //otra opción, devolver código html
+        return view('study.ajax.filter', ['sesions'=>$sesions]);
+        }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SesionController;
 use App\Http\Controllers\DateController;
+use App\Models\Sesion;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -25,21 +26,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Grupo de rutas para combinar varias
-Route::prefix('users')->group(function () {
-    Route::resource('/', UserController::class);
-    Route::get('/filter', [UserController::class, 'filter'])->name('filter');
-});
-
+Route::resource('users', UserController::class);
+Route::resource('sesions', SesionController::class);
 Route::resource('activities', ActivityController::class);
 Route::resource('roles', RoleController::class);
+Route::get('/dates/filter', [DateController::class, 'filter']);
 Route::resource('dates', DateController::class);
 
 //Grupo de rutas para combinar varias
-Route::prefix('sesions')->group(function () {
-    Route::resource('/', SesionController::class);
-    // Route::get('/sign', [SesionController::class, 'sign'])->name('sign');
-});
+// Route::prefix('sesions')->group(function () {
+//     Route::resource('/', SesionController::class);
+//     // Route::get('/sign', [SesionController::class, 'sign'])->name('sign');
+// });
 
 
 // Route::get('member', [MemberController::class, 'index']);

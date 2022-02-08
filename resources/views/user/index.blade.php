@@ -7,23 +7,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(function() {
-            $('#buscar').click(function(e) {
-                e.preventDefault();
-                console.log("ha hecho click");
-                data = $('#filtro').val();
-                console.log(data);
-
-                $.get("/users/filter?filter=" + data, function(data, status) {
-                    // console.log("Data: " + data + "\nStatus: " + status);
-                    console.log(data);
-                    $('#destinofiltro').html(data);
-                });
-            });
-        });
-    </script>
     <title>Usuarios del gimnasio</title>
     <style>
         body {
@@ -44,17 +27,6 @@
             <h1>Miembros del gimnasio
                 <a href="/users/create" class="btn btn-primary"><i class="fas fa-plus"></i></a>
             </h1>
-            <form action="" id="formulario">
-                <input type="text" id="filtro">
-                <button type="submit" class="btn btn-primary" value="Buscar" id="buscar">
-                    <i class="fas fa-search"></i>
-                </button>
-
-            </form>
-            <table id="destinofiltro" class="table table-bordered table-hover">
-            </table>
-        </div>
-
         <table id="table" class="table table-bordered table-hover">
             <thead>
                 <tr>
@@ -111,9 +83,9 @@
                     <td>
                         <form method="POST" action="/users/{{$user->id}}">
                             @csrf
+                            @method('DELETE')
                             <a href="/users/{{$user->id}}" class="btn btn-primary"><i class="far fa-eye"></i></a>
                             <a href="/users/{{$user->id}}/edit" class="btn btn-primary"><i class="far fa-edit"></i></a>
-                            <input type="hidden" name="_method" value="DELETE">
                             <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i>
                             </button>
                         </form>
@@ -132,5 +104,4 @@
 
 </body>
 @endsection
-
 </html>

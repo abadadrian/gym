@@ -18,8 +18,6 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $users = User::paginate(5);
-        // $user = User::find(1);
-        // $sesion = Sesion::find(2);
         $name = $request->name;
         $role = $request->role;
 
@@ -130,14 +128,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        // dd($user);
+        $user->delete();
+        return redirect('/users');
     }
-
-    public function filter (Request $request) {
-        $filter = $request->filter;
-        $users = User::where('name', 'LIKE', "%$filter%")->get();
-        return $users; //devuelve JSON
-        //otra opción, devolver código html
-        return view('user.ajax.filter', ['users'=>$users]);
-        }
 }
