@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+            
         User::create([
             'id'=> '1',
             'name' => 'registrado',
@@ -37,7 +38,7 @@ class UserSeeder extends Seeder
             'height' =>'150',
             'birthdate' => '1996-10-10 00:00:00',
             'gender' =>'Hombre',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('password'),          
             'role_id' => 2
         ]);
 
@@ -50,7 +51,7 @@ class UserSeeder extends Seeder
             'height' =>'150',
             'birthdate' => '1986-10-10 00:00:00',
             'gender' =>'Mujer',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('password'),           
             'role_id' => 3
         ]);
 

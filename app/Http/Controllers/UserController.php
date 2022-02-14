@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Sesion;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -14,6 +14,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('role')->except('show');
+        // only('show','index'), solo lo implementa en los métodos que le indiques
+        // except('show','index'), no lo implementará en los métodos que le indiques
+    }
+
     public function index(Request $request)
     {
         $user = Auth::user();
@@ -21,14 +28,13 @@ class UserController extends Controller
         $name = $request->name;
         $role = $request->role;
 
-        if($name){
+        if ($name) {
             $users = User::where('name', 'like', "%$name%")->paginate(5);
-
         }
-        if($role){
+        if ($role) {
             $users = User::where('role_id', $role)->paginate(5);
         }
-        
+
         $users->withPath("/users?name=$name&role=$role");
         return view('user.index', [
             'users' => $users,
@@ -66,7 +72,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
         $user = User::create($request->all());
+        $user->type = "Usuario";
         return redirect('/users');
     }
 
@@ -76,9 +84,9 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        return view('user.show', ['user' => $user]);
+        return view('user.show', ['user' => User::find($id)]);
     }
 
     /**

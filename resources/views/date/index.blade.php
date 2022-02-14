@@ -12,13 +12,15 @@
         $(document).ready(function() {
             $('#buscar').click(function(e) {
                 e.preventDefault();
-                data = $("#activity").children("option:selected").val();
-                console.log(data);
-                location.replace("/dates/filter/" + data);
-                $.get("/dates/filter?filter=" + data, function(data, status) {
-                    console.log("Data: " + data + "\nStatus: " + status);
-                    // console.log(data);
-                    $('#destinofiltro').html(data);
+                selected = $("#activity").children("option:selected").val();
+                console.log(selected);
+
+                $.get("/dates/filter/" + selected, function(res, status) {
+                    $("#sesiones").html("");
+                    res.forEach((item) => {
+                        const parrafo = `<p>${item.horaFinal}</p>`
+                        $("#sesiones").append(parrafo);
+                    })
                 });
             });
         });
@@ -34,36 +36,47 @@
 
 <body>
     <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Reservar</li>
+            </ol>
+        </nav>
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Mostrar sesiones') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="" id="form">
-                            @csrf
-                            <!-- ACTIVIDADES  -->
-                            <div class="row mb-3">
-                                <label for="actividad" class="col-md-4 col-form-label text-md-end">{{ __('Actividad') }}</label>
-                                <div class="col-md-6">
-                                    <select name="activity" id="activity" class="form-select">
-                                        @foreach ($activities as $activity)
-                                        <option name="filter" id="filtro" value="{{$activity->id}}">{{$activity->name}}</option>
-                                        @endforeach
-                                    </select>
+
+                        <!-- ACTIVIDADES  -->
+                        <div class="row mb-3">
+                            <label for="actividad" class="col-md-4 col-form-label text-md-end">{{ __('Actividad') }}</label>
+                            <div class="col-md-6">
+                                <select name="activity" id="activity" class="form-select">
+                                    @foreach ($activities as $activity)
+                                    <option name="filter" id="filtro" value="{{$activity->id}}">{{$activity->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button id="buscar" class="btn btn-primary">
+                                    {{ __('Buscar') }}
+                                </button>
+
+                                <div class="container">
+                                    <p id="sesiones"></p>
                                 </div>
                             </div>
-                            <div class="row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" id="buscar" class="btn btn-primary">
-                                        {{ __('Buscar') }}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @endsection
+</body>
+
+</html>
+@endsection
