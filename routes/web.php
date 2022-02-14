@@ -30,11 +30,11 @@ Route::resource('users', UserController::class);
 Route::resource('sesions', SesionController::class);
 Route::resource('activities', ActivityController::class);
 Route::resource('roles', RoleController::class);
-
-Route::controller(DateController::class)->group(function (){
-    Route::get('/dates/filter/{id}',[DateController::class,'filter']);
-    // Route::post('/dates/user', 'datesUser');
-});
+Route::get('/dates/filter/{id}',[DateController::class,'filter']);
+// Route::controller(DateController::class)->group(function (){
+//     Route::get('/dates/filter/{id}',[DateController::class,'filter']);
+//     // Route::post('/dates/user', 'datesUser');
+// });
 Route::resource('dates', DateController::class);
 
 
