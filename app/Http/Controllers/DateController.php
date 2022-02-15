@@ -18,9 +18,9 @@ class DateController extends Controller
      */
     public function index()
     {
-            $user= auth()->user();
-            $activities = Activity::all();
-            return view('date.index', ['activities' => $activities, 'user' => $user]);
+        $user = auth()->user();
+        $activities = Activity::all();
+        return view('date.index', ['activities' => $activities, 'user' => $user]);
     }
 
     /**
@@ -89,15 +89,18 @@ class DateController extends Controller
         //
     }
 
-    public function filter ($id) {
+    public function filter($id)
+    {
         $sesions = Sesion::where('activity_id', 'LIKE', "%$id%")->get();
         return $sesions; //devuelve JSON
         //otra opción, devolver código html
         // return view('study.ajax.filter', ['sesions'=>$sesions]);
-        }
+    }
 
-    public function datesUser(){
-        $user= auth()->user();
-        dd($user);
+    public function datesUser($id)
+    {
+        $user = auth()->user();
+        dd($user->sesions);
+        //Attach para sesiones.
     }
 }

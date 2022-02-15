@@ -48,7 +48,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/dates">Reservar</a>
                         </li>
-                    </ul>
+                        </ul>
                     @endif
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">

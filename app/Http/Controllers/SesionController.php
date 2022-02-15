@@ -38,7 +38,6 @@ class SesionController extends Controller
      */
     public function store(Request $request)
     {
-
         //Creamos automaticamente las sesiones en base a lo introducido por el formulario
         $fechaFormulario = Carbon::create($request->mesSesion);
         // dd($fechaFormulario->dayOfWeekIso);

@@ -7,6 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
@@ -30,11 +31,34 @@
                         let horaI = row.insertCell(3);
                         horaI.innerHTML = item.horaInicio;
                         let reservarBoton = row.insertCell(4);
-                        reservarBoton.innerHTML = `<button type="submit" class="btn btn-primary"><i class="fas fa-bookmark"></i></button>`;
+                        const submitButton = document.createElement("button");
+                        submitButton.setAttribute("id", "btn-enviar");
+                        submitButton.setAttribute("class", "btn btn-primary")
+                        submitButton.setAttribute("onclick", `reservate(${item.id})`);
+                        submitButton.innerHTML = '<i class="fas fa-bookmark"></i>';
+                        reservarBoton.append(submitButton);
                     })
                 });
             });
         });
+
+        function reservate(id) {
+            console.log(`Esta función ejecución la petición POST que añadirá la sesión con id ${id}`);
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                method: 'POST',
+                // Ruta a la que llama la petición POST
+                url: `/dates/user/${id}`
+            }).then((data) => {
+                console.log(data);
+                // Muestra la vista principal (seleccion de sesiones)
+
+            }).catch((err) => {
+                console.log(`Ha ocurrido un error realizando la petición ${err.message}.`)
+            });
+        }
     </script>
     <title>Laravel</title>
 
