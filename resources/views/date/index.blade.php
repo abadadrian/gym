@@ -14,10 +14,11 @@
                 e.preventDefault();
                 selected = $("#activity").children("option:selected").val();
                 console.log(selected);
-
                 $.get("/dates/filter/" + selected, function(res, status) {
                     $("#sesiones").html("");
                     const table = document.getElementById("table");
+                    // Limpiar tabla cada vez que haces click (Excepto el primer tr que es el header)
+                    $("#table").find("tr:gt(0)").remove();
                     res.forEach((item) => {
                         let row = table.insertRow();
                         let id = row.insertCell(0);
@@ -29,7 +30,7 @@
                         let horaI = row.insertCell(3);
                         horaI.innerHTML = item.horaInicio;
                         let reservarBoton = row.insertCell(4);
-                        reservarBoton .innerHTML = `<button type="submit" class="btn btn-primary"><i class="fas fa-bookmark"></i></button>`;                                                        
+                        reservarBoton.innerHTML = `<button type="submit" class="btn btn-primary"><i class="fas fa-bookmark"></i></button>`;
                     })
                 });
             });
@@ -75,39 +76,37 @@
                                 <button id="buscar" class="btn btn-primary mb-3">
                                     {{ __('Buscar') }}
                                 </button>
-                                </div>
-                                <div class="container">
-                                    <table id="table" class="table table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th style="" data-field="id">
-                                                    <div class="th-inner ">ID</div>
-                                                    <div class="fht-cell"></div>
-                                                </th>
-                                                <th style="" data-field="name">
-                                                    <div class="th-inner ">Dia</div>
-                                                    <div class="fht-cell"></div>
-                                                </th>
-                                                <th style="" data-field="name">
-                                                    <div class="th-inner ">Hora inicio</div>
-                                                    <div class="fht-cell"></div>
-                                                </th>
-                                                <th style="" data-field="name">
-                                                    <div class="th-inner ">Hora fin</div>
-                                                    <div class="fht-cell"></div>
-                                                </th>
-                                                <th style="" data-field="name">
-                                                    <div class="th-inner ">Reservar</div>
-                                                    <div class="fht-cell"></div>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                </div>
+                            </div>
+                            <div class="container">
+                                <table id="table" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th style="" data-field="id">
+                                                <div class="th-inner ">ID</div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th style="" data-field="name">
+                                                <div class="th-inner ">Dia</div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th style="" data-field="name">
+                                                <div class="th-inner ">Hora inicio</div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th style="" data-field="name">
+                                                <div class="th-inner ">Hora fin</div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th style="" data-field="name">
+                                                <div class="th-inner ">Reservar</div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                        </tr>
+                                    </thead>
                             </div>
                         </div>
                     </div>
-                
+                </div>
             </div>
         </div>
     </div>
