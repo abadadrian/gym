@@ -14,9 +14,10 @@
             $('#buscar').click(function(e) {
                 e.preventDefault();
                 selected = $("#activity").children("option:selected").val();
-                console.log(selected);
+                // console.log(selected);
                 $.get("/dates/filter/" + selected, function(res, status) {
                     $("#sesiones").html("");
+                    // console.log(res);
                     const table = document.getElementById("table");
                     // Limpiar tabla cada vez que haces click (Excepto el primer tr que es el header)
                     $("#table").find("tr:gt(0)").remove();
@@ -54,7 +55,7 @@
             }).then((data) => {
                 console.log(data);
                 // Muestra la vista principal (seleccion de sesiones)
-
+                
             }).catch((err) => {
                 console.log(`Ha ocurrido un error realizando la petición ${err.message}.`)
             });
