@@ -49,15 +49,15 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                method: 'POST',
+                method: 'post',
                 // Ruta a la que llama la petición POST
-                url: `/dates/user/${id}`
+                url: `/dates/reservate/${id}`
             }).then((data) => {
                 console.log(data);
                 // Muestra la vista principal (seleccion de sesiones)
-                
+                url: "/dates"
             }).catch((err) => {
-                console.log(`Ha ocurrido un error realizando la petición ${err.message}.`)
+                console.error(err)
             });
         }
     </script>

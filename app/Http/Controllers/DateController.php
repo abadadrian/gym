@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Date;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 use App\Models\Activity;
 use App\Models\User;
 use App\Models\Sesion;
+use Illuminate\Support\Facades\Auth;
 
 
 class DateController extends Controller
@@ -84,9 +86,15 @@ class DateController extends Controller
      * @param  \App\Models\Date  $date
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Date $date)
+    public function destroy($id)
     {
+        //Objeto usuario logueado
+        $user = auth()->user();
+        //Sesion (con el ID pasado por parametro)
+        $sesion = Sesion::find($id);
         //
+        $sesion->users()->detach($user->id);
+        return redirect('/dates/user');
     }
 
     public function filter($id)
@@ -97,10 +105,27 @@ class DateController extends Controller
         // return view('study.ajax.filter', ['sesions'=>$sesions]);
     }
 
-    public function datesUser($id)
+    public function datesUser()
     {
-        $user = auth()->user();
-        dd($user->sesions);
         //Attach para sesiones.
+        $user = auth()->user();
+        $sesions = Sesion::with('users')
+            //->where('param1',param2) Comprueba si son igual
+            ->whereIn('id', function ($query) use ($user) {
+                $query->select('sesion_id')
+                    ->where('user_id', $user->id)
+                    ->from('sesion_user');
+            })->get();
+        return view('date.user', [
+            'user' => $user,
+            'sesions' => $sesions
+        ]);
+    }
+
+    public function reservate($id)
+    {
+        $sesion = Sesion::find($id);
+        //$objeto -> relacionBelongsToMany()->attach(id del usuario actual);
+        $sesion->users()->attach(Auth::id());
     }
 }

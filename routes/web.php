@@ -31,7 +31,8 @@ Route::resource('sesions', SesionController::class);
 Route::resource('activities', ActivityController::class);
 Route::resource('roles', RoleController::class);
 Route::controller(DateController::class)->group(function (){
-    Route::get('/dates/user/{id}','datesUser');
+    Route::get('/dates/user','datesUser');
+    Route::post('/dates/reservate/{id}','reservate');
     Route::get('/dates/filter/{id}','filter');
 });
 Route::resource('dates', DateController::class);

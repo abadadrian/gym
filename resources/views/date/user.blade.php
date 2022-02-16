@@ -25,8 +25,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Sesiones</li>
             </ol>
         </nav>
-        <h1 class="mt-3 mb-3">Sesiones de actividades
-            <a href="/sesions/create" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+        <h1 class="mt-3 mb-3">Reservas de {{$user->name}}
         </h1>
         <table id="table" class="table table-bordered table-hover">
             <thead>
@@ -67,7 +66,7 @@
                     <td>{{$sesion->horaInicio}} </td>
                     <td>{{$sesion->horaFinal}} </td>
                     <td>
-                        <form method="POST" action="/sesions/{{$sesion->id}}">
+                        <form method="POST" action="/dates/{{$sesion->id}}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
@@ -76,12 +75,11 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="7" class>No hay actividades registrados</td>
+                    <td colspan="7" class>No hay reservas registradas</td>
                 </tr>
                 @endforelse
             </tbody>
         </table>
-        {{$sesions->links("pagination::bootstrap-4")}}
 
     </div>
 

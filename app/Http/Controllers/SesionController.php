@@ -16,7 +16,7 @@ class SesionController extends Controller
      */
     public function index()
     {
-        $sesions = Sesion::all();
+        $sesions = Sesion::paginate(7);
         return view('sesion.index', ['sesions' => $sesions]);
     }
     /**
@@ -137,7 +137,7 @@ class SesionController extends Controller
      */
     public function destroy(Sesion $sesion)
     {
-        dd($sesion);
+        // dd($sesion);
         $sesion->delete();
         return redirect('/sesions');
     }
