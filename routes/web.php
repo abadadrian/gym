@@ -38,7 +38,6 @@ Route::controller(DateController::class)->group(function (){
 });
 Route::resource('dates', DateController::class);
 
-
 //Grupo de rutas para combinar varias
 // Route::prefix('sesions')->group(function () {
 //     Route::resource('/', SesionController::class);

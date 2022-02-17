@@ -97,9 +97,13 @@ class DateController extends Controller
         return redirect('/dates/user');
     }
 
-    public function filter($id)
+    public function filter($filter)
     {
-        $sesions = Sesion::where('activity_id', 'LIKE', "%$id%")->get();
+        if (Activity::find($filter)) {
+            $sesions = Sesion::where('activity_id', 'LIKE', "%$filter%")->get();
+        } else {
+            $sesions = Sesion::where('mesSesion', 'LIKE', "%$filter%")->get();
+        }
         return $sesions; //devuelve JSON
         //otra opción, devolver código html
         // return view('study.ajax.filter', ['sesions'=>$sesions]);
@@ -107,19 +111,8 @@ class DateController extends Controller
 
     public function datesUser()
     {
-        //Attach para sesiones.
-        $user = auth()->user();
-        $sesions = Sesion::with('users')
-            //->where('param1',param2) Comprueba si son igual
-            ->whereIn('id', function ($query) use ($user) {
-                $query->select('sesion_id')
-                    ->where('user_id', $user->id)
-                    ->from('sesion_user');
-            })->get();
-        return view('date.user', [
-            'user' => $user,
-            'sesions' => $sesions
-        ]);
+        $user = Auth::user();
+        return view('date.user', ['user' => $user]);
     }
 
     public function reservate($id)

@@ -57,7 +57,7 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($sesions as $sesion)
+                @forelse ($user->sesions as $sesion)
                 <tr data-index="1">
                     <td>{{$sesion->id}}</td>
                     <td>{{$sesion->activity->name}}</td>

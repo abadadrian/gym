@@ -11,37 +11,52 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
-            $('#buscar').click(function(e) {
+            $('#buscarActivity').click(function(e) {
                 e.preventDefault();
                 selected = $("#activity").children("option:selected").val();
+                console.log(selected);
                 // console.log(selected);
                 $.get("/dates/filter/" + selected, function(res, status) {
-                    $("#sesiones").html("");
-                    // console.log(res);
-                    const table = document.getElementById("table");
-                    // Limpiar tabla cada vez que haces click (Excepto el primer tr que es el header)
-                    $("#table").find("tr:gt(0)").remove();
-                    res.forEach((item) => {
-                        let row = table.insertRow();
-                        let id = row.insertCell(0);
-                        id.innerHTML = item.id;
-                        let actividad = row.insertCell(1);
-                        actividad.innerHTML = item.diasSesion;
-                        let mes = row.insertCell(2);
-                        mes.innerHTML = item.mesSesion;
-                        let horaI = row.insertCell(3);
-                        horaI.innerHTML = item.horaInicio;
-                        let reservarBoton = row.insertCell(4);
-                        const submitButton = document.createElement("button");
-                        submitButton.setAttribute("id", "btn-enviar");
-                        submitButton.setAttribute("class", "btn btn-primary")
-                        submitButton.setAttribute("onclick", `reservate(${item.id})`);
-                        submitButton.innerHTML = '<i class="fas fa-bookmark"></i>';
-                        reservarBoton.append(submitButton);
-                    })
+                    fillTableByActivity(res);
+                });
+            });
+
+            $('#buscarDate').click(function(e) {
+                e.preventDefault();
+                date = $("#date").val();
+                console.log(date);
+                // console.log(date);
+                $.get("/dates/filter/" + date, function(res, status) {
+                    fillTableByActivity(res);
                 });
             });
         });
+
+        function fillTableByActivity(res) {
+            $("#sesiones").html("");
+            // console.log(res);
+            const table = document.getElementById("table");
+            // Limpiar tabla cada vez que haces click (Excepto el primer tr que es el header)
+            $("#table").find("tr:gt(0)").remove();
+            res.forEach((item) => {
+                let row = table.insertRow();
+                let id = row.insertCell(0);
+                id.innerHTML = item.id;
+                let actividad = row.insertCell(1);
+                actividad.innerHTML = item.diasSesion;
+                let mes = row.insertCell(2);
+                mes.innerHTML = item.mesSesion;
+                let horaI = row.insertCell(3);
+                horaI.innerHTML = item.horaInicio;
+                let reservarBoton = row.insertCell(4);
+                const submitButton = document.createElement("button");
+                submitButton.setAttribute("id", "btn-enviar");
+                submitButton.setAttribute("class", "btn btn-primary")
+                submitButton.setAttribute("onclick", `reservate(${item.id})`);
+                submitButton.innerHTML = '<i class="fas fa-bookmark"></i>';
+                reservarBoton.append(submitButton);
+            })
+        }
 
         function reservate(id) {
             console.log(`Esta función ejecución la petición POST que añadirá la sesión con id ${id}`);
@@ -86,8 +101,8 @@
                     <div class="card-body">
 
                         <!-- ACTIVIDADES  -->
-                        <div class="row mb-3">
-                            <label for="actividad" class="col-md-4 col-form-label text-md-end">{{ __('Actividad') }}</label>
+                        <div class="row mb-2">
+                            <label for="actividad" class="col-md-4 col-form-label text-md-end">{{ __('Buscar por actividad:') }}</label>
                             <div class="col-md-6">
                                 <select name="activity" id="activity" class="form-select">
                                     @foreach ($activities as $activity)
@@ -95,13 +110,32 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button id="buscar" class="btn btn-primary mb-3">
+                            <div class="col-md-6 mt-3 offset-md-4">
+                                <button id="buscarActivity" class="btn btn-primary mb-3">
                                     {{ __('Buscar') }}
                                 </button>
                             </div>
+                        </div>
+                        <!-- FECHA -->
+                        <div class="row mb-2">
+                            <label for="mesSesion" class="col-md-4 col-form-label text-md-end">{{ __('Buscar por fecha:') }}</label>
+                            <div class="col-md-6">
+                                <input id="date" type="date" class="form-control @error('mesSesion') is-invalid @enderror" name="mesSesion" value="{{ old('mesSesion') }}" required autocomplete="mesSesion" autofocus>
+                                @error('mesSesion')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 mt-3 offset-md-4">
+                                <button id="buscarDate" class="btn btn-primary mb-3">
+                                    {{ __('Buscar') }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-0">
+                        <div class="container">
                             <div class="container">
                                 <table id="table" class="table table-bordered table-hover">
                                     <thead>
@@ -134,6 +168,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 

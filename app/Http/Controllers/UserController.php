@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('role')->except('show');
+        $this->middleware('role')->except('show','profile', 'edit', 'update');
         // only('show','index'), solo lo implementa en los métodos que le indiques
         // except('show','index'), no lo implementará en los métodos que le indiques
     }
@@ -142,6 +142,7 @@ class UserController extends Controller
 
     public function profile(){
         $user = auth()->user();
+        dd($user);
         
     }
 }
