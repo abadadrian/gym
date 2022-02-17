@@ -25,7 +25,8 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
- 
+
+Route::get('/user/profile',[UserController::class, 'profile']);
 Route::resource('users', UserController::class);
 Route::resource('sesions', SesionController::class);
 Route::resource('activities', ActivityController::class);
