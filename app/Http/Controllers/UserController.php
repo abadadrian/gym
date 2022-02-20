@@ -142,7 +142,7 @@ class UserController extends Controller
 
     public function profile(){
         $user = auth()->user();
-        dd($user);
+        return view('user.edit', ['user' => $user]);
         
     }
 }
