@@ -39,6 +39,14 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
+        //Validacion
+        $rules = [
+            'name'=>'required|max:25',
+            'description'=> 'required|max:30',
+            'activity_minutes' => 'required|max:3',
+            'max_participants'=> 'required|max:2',
+        ];
+        $request->validate($rules);
         $activity= Activity::create($request->all());
         return redirect('/activities');
 

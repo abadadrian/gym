@@ -43,16 +43,6 @@ class UserController extends Controller
             'user' => $user
         ]);
     }
-    /** 
-     *  public function addSesion()
-     * {
-     *    $user = User::find(1);
-     *   $sesion = Sesion::find(2);
-     *  $user->addSesion($sesion);
-     * $users = User::all();
-     *return view('user.index', ['users' => $users]);
-     *}
-     */
 
     /**
      * Show the form for creating a new resource.
@@ -72,6 +62,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        //No hacemos validacion porque el propio RegisterController que trae Auth, ya tiene configurado validaciones en él.
         $user = User::create($request->all());
         $user->type = "Usuario";
         return redirect('/users');

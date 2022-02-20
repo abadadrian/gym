@@ -28,13 +28,6 @@
         <h1 class="mt-3 mb-3">Actividades del gimnasio
             <a href="/activities/create" class="btn btn-primary"><i class="fas fa-plus"></i></a>
         </h1>
-        <form action="" id="formulario">
-            <input type="text" id="filtro">
-            <button type="submit" class="btn btn-primary" value="Buscar" id="buscar">
-                <i class="fas fa-search"></i>
-            </button>
-
-        </form>
         <table id="destinofiltro" class="table table-bordered table-hover">
         </table>
     <table id="table" class="table table-bordered table-hover">
