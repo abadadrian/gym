@@ -96,5 +96,4 @@
 
 </body>
 @endsection
-
 </html>
