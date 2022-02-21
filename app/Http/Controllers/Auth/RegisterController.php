@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+
 use Illuminate\Http\Request;
 
 
@@ -10,6 +11,9 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SupportMailable;
 
 class RegisterController extends Controller
 {
@@ -38,6 +42,8 @@ class RegisterController extends Controller
      *
      * @return void
      */
+
+
     public function __construct()
     {
         $this->middleware('guest');
@@ -47,7 +53,7 @@ class RegisterController extends Controller
     {
         $users = User::all();
 
-        return view('user.index' , ['users' => $users]);
+        return view('user.index', ['users' => $users]);
     }
 
     public function show(User $user)
@@ -113,6 +119,20 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $user = User::create($request->all());
+        // Envía un correo electrónico de bienvenida
+        $this->welcomeMail($request);
         return redirect('/users');
+    }
+
+    public function welcomeMail(Request $request)
+    {
+        $user = User::find($request->user_id);
+        $userName = $user->name;
+        $userMail = $user->email;
+        Mail::to($userMail)->send(
+            new SupportMailable(
+                $userName
+            )
+        );
     }
 }

@@ -10,9 +10,9 @@ use App\Models\User;
 use App\Models\Sesion;
 use Illuminate\Support\Facades\Auth;
 
-
 class DateController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -121,4 +121,5 @@ class DateController extends Controller
         //$objeto -> relacionBelongsToMany()->attach(id del usuario actual);
         $sesion->users()->attach(Auth::id());
     }
+
 }
