@@ -64,7 +64,7 @@ class UserController extends Controller
     {
         //No hacemos validacion porque el propio RegisterController que trae Auth, ya tiene configurado validaciones en él.
         $user = User::create($request->all());
-        $user->type = "Usuario";
+        // $user->type = "Usuario";
         return redirect('/users');
     }
 

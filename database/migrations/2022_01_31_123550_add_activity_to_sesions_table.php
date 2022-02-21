@@ -28,7 +28,7 @@ class AddActivityToSesionsTable extends Migration
     {
         //las fk se mombran así: tabla_columna_foreign
         //esto se usa para eliminar la clave en el down
-        Schema::table('activities', function (Blueprint $table) {
+        Schema::table('sesions', function (Blueprint $table) {
             $table->dropForeign('sesions_activity_id_foreign');
             $table->dropColumn('activity_id');
         });
