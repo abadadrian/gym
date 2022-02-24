@@ -61,5 +61,5 @@ class User extends Authenticatable
 
     public function addSesion(Sesion $sesion){
         $this->sesions()->attach($sesion);
-    }
+    }    
 }

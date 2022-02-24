@@ -104,6 +104,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $this->welcomeMail($data);
         return User::create([
             'name' => $data['name'],
             'dni' => $data['dni'],
@@ -114,21 +115,13 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        
     }
 
-    public function store(Request $request)
+    public function welcomeMail($data)
     {
-        $user = User::create($request->all());
-        // Envía un correo electrónico de bienvenida
-        $this->welcomeMail($request);
-        return redirect('/users');
-    }
-
-    public function welcomeMail(Request $request)
-    {
-        $user = User::find($request->user_id);
-        $userName = $user->name;
-        $userMail = $user->email;
+        $userName = $data['name'];
+        $userMail = $data['email'];
         Mail::to($userMail)->send(
             new SupportMailable(
                 $userName
